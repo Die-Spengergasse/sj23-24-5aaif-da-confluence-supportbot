@@ -1,12 +1,9 @@
-﻿using Supportbot.Application.Infrastructure;
-using Supportbot.Application.Services;
+﻿using Bogus;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Collections.Generic;
 using Supportbot.Application.Dtos;
-using Bogus;
-using System;
+using Supportbot.Application.Infrastructure;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Supportbot.Webapi.Controllers
 {
@@ -16,7 +13,7 @@ namespace Supportbot.Webapi.Controllers
     {
         private readonly SupportbotContext _db;
 
-        public SearchController(SupportbotContext db, CalendarService calendarService)
+        public SearchController(SupportbotContext db)
         {
             _db = db;
         }
@@ -28,7 +25,7 @@ namespace Supportbot.Webapi.Controllers
 
             var results = new Faker<SearchResultDto>("de")
                 .CustomInstantiator(f => new SearchResultDto(f.Lorem.Word(), f.Lorem.Paragraph()))
-                .Generate(faker.Random.Int(3,6));
+                .Generate(faker.Random.Int(3, 6));
             return Ok(results.ToList());
         }
     }
