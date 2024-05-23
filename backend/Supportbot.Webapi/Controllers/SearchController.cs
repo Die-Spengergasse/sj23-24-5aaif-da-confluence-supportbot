@@ -1,9 +1,13 @@
 ﻿using Bogus;
+using Elastic.Clients.Elasticsearch;
+using Elastic.Clients.Elasticsearch.QueryDsl;
 using Microsoft.AspNetCore.Mvc;
 using Supportbot.Application.Dtos;
 using Supportbot.Application.Infrastructure;
+using Supportbot.Application.Model;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Supportbot.Webapi.Controllers
 {
@@ -12,21 +16,34 @@ namespace Supportbot.Webapi.Controllers
     public class SearchController : ControllerBase
     {
         private readonly SupportbotContext _db;
+        private readonly ElasticsearchClient _client;
 
-        public SearchController(SupportbotContext db)
+        public SearchController(SupportbotContext db, ElasticsearchClient client)
         {
             _db = db;
+            _client = client;
         }
 
-        public ActionResult<List<SearchResultDto>> Search([FromQuery] string query)
+        [HttpGet("all")]
+        public async Task<ActionResult<List<SearchResultDto>>> GetAllDocuments()
         {
-            //Randomizer.Seed = new Random(1658);
-            var faker = new Faker("de");
+            var searchRequest = new SearchRequestDescriptor<SupportDocument>()
+                .Query(q => q.MatchAll());
+            var found = await _client.SearchAsync(searchRequest);
 
-            var results = new Faker<SearchResultDto>("de")
-                .CustomInstantiator(f => new SearchResultDto(f.Lorem.Word(), f.Lorem.Paragraph()))
-                .Generate(faker.Random.Int(3, 6));
-            return Ok(results.ToList());
+            if (!found.IsValidResponse) return BadRequest();
+            return Ok(found.Documents.Select(s => new SearchResultDto(s.Title, s.Content)));
+        }
+
+        public async Task<ActionResult<List<SearchResultDto>>> Search([FromQuery] string query)
+        {
+            var searchRequest = new SearchRequestDescriptor<SupportDocument>()
+                .Query(q => q.Match(
+                    new MatchQuery(new Field("content")) { Query = query }));
+            var found = await _client.SearchAsync(searchRequest);
+
+            if (!found.IsValidResponse) return BadRequest();
+            return Ok(found.Documents.Select(s=>new SearchResultDto(s.Title, s.Content)));
         }
     }
 }

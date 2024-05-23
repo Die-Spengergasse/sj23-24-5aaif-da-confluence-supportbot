@@ -1,3 +1,4 @@
+using Elastic.Clients.Elasticsearch;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Supportbot.Application.Infrastructure;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 // *************************************************************************************************
@@ -21,6 +23,12 @@ builder.Services.AddDbContext<SupportbotContext>(opt =>
     opt.UseSqlite(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
+builder.Services.AddScoped(sp =>
+{
+    var settings = new ElasticsearchClientSettings(new Uri("http://localhost:9200"))
+        .DefaultIndex("supportdocument-idx");
+    return new ElasticsearchClient(settings);
+});
 
 builder.Services.AddHttpContextAccessor();     // Required to access the http context in the auth service.
 //builder.Services.AddTransient<AuthService>();  // Instantiation on each DI injection.
