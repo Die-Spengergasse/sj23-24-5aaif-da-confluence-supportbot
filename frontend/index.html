@@ -1,13 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Manager</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SupportBot</title>
   </head>
   <body>
+    <header>
+      <div class="flex-container">
+        <div class="item1">
+          <nav class="leftside">
+            <a>Terms of Service</a>
+            <a>Help</a>
+          </nav>
+        </div>
+
+        <div class="item2">
+          <a>Confluence SupportBot</a>
+        </div>
+
+        <div class="item3">
+          <nav class="rightside">
+            <a>Team</a>
+            <a>Impressum</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="einfuehrung">
+      <p>
+        Nutze den Calunoja-Bot, um Dokumentationen schneller und effizienter zu
+        finden! <br />Er erleichtert die Suche erheblich und spart dir wertvolle
+        Zeit.
+      </p>
+    </div>
+
+    <div class="bot_icon">
+      <img src="src/assets/bot_icon.png" />
+    </div>
+
+    <div class="suchfenster">
+      <div class="text_eingabe">
+        <form action="/suche" method="get">
+          <input
+            type="text"
+            id="text_eingabe"
+            name="query"
+            placeholder="Suchbegriff eingeben"
+          />
+          <button type="submit">Suchen</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="ergebnise">
+      <h3>Suchergebnise</h3>
+    </div>
+
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    
   </body>
+  <style>
+    header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      align-items: center;
+      padding-right: 40px;
+    }
+
+    .flex-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .flex-container > div {
+      border-radius: 5px;
+      padding: 8px;
+      padding-right: 40px;
+    }
+
+    .item1 {
+      flex-grow: 2;
+      align-items: center;
+      text-align: center;
+      font-family: "Trebuchet MS";
+    }
+
+    .item2 {
+      flex-grow: 1;
+      font-size: 30px;
+      font-family: "Trebuchet MS";
+      font-weight: 90000;
+    }
+
+    .item3 {
+      flex-grow: 2;
+      align-self: auto;
+      font-family: "Trebuchet MS";
+    }
+
+    .einfuehrung {
+      font-family: "Trebuchet MS";
+      font-weight: 800;
+      text-align: center;
+      padding-block: 40px;
+    }
+
+    .bot_icon {
+      block-size: 150px;
+      background-color: #007bff;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+    }
+
+    .bot_icon img {
+      height: 80%;
+      border: 5px solid #000;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+
+    .suchfenster {
+      block-size: 85px;
+      background-color: #007bff;
+      display: flex;
+      justify-content: center;
+      align-items: top;
+      padding-top: 10px;
+    }
+
+    .text_eingabe form {
+      display: flex;
+    }
+
+    .text_eingabe input {
+      width: 300px;
+      height: 40px;
+      padding: 0 20px;
+      border: 2px solid #ccc;
+      border-radius: 20px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+
+    .text_eingabe input:focus {
+      border-color: #007bff;
+    }
+
+    .text_eingabe button {
+      height: 44px;
+      margin-left: 10px;
+      padding: 0 20px;
+      background-color: white;
+      color: gray;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .text_eingabe button:hover {
+      background-color: #00c3ff;
+    }
+  </style>
 </html>
