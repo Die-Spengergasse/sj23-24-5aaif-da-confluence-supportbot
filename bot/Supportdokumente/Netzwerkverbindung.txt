@@ -1,0 +1,11 @@
+Betreff: Probleme mit der Netzwerkverbindung
+Anfrage: Ein Benutzer hat Probleme, eine stabile Verbindung zu unserem Firmen-WLAN herzustellen. Was können die möglichen Fehlerquellen sein und wie kann man sie beheben?
+
+Lösung:
+1. Überprüfen Sie, ob der WLAN-Router eingeschaltet und korrekt konfiguriert ist.
+2. Stellen Sie sicher, dass das Gerät des Benutzers in Reichweite des WLAN-Signals ist.
+3. Überprüfen Sie die WLAN-Einstellungen auf dem Gerät des Benutzers und stellen Sie sicher, dass die richtigen Netzwerkdaten (SSID, Passwort) eingegeben wurden.
+4. Überprüfen Sie, ob es Interferenzen durch andere drahtlose Geräte gibt und ändern Sie ggf. den WLAN-Kanal.
+5. Stellen Sie sicher, dass keine MAC-Filterung aktiviert ist, die das Gerät des Benutzers blockiert.
+6. Überprüfen Sie die IP-Einstellungen und stellen Sie sicher, dass das Gerät eine gültige IP-Adresse erhält.
+7. Starten Sie den Router und das Gerät des Benutzers neu.

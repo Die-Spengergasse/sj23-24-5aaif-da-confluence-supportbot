@@ -1,0 +1,10 @@
+Betreff: Passwort im Active Directory zurücksetzen
+Anfrage: Wie kann ich als ServiceDesk-Mitarbeiter ein Passwort im Active Directory zurücksetzen?
+
+Lösung:
+1. Öffnen Sie die Active Directory-Benutzer und -Computer (ADUC) Konsole.
+2. Navigieren Sie zu dem Benutzerkonto, dessen Passwort zurückgesetzt werden soll.
+3. Klicken Sie mit der rechten Maustaste auf das Benutzerkonto und wählen Sie "Kennwort zurücksetzen".
+4. Geben Sie das neue Passwort ein und bestätigen Sie es.
+5. Stellen Sie sicher, dass die Option "Benutzer muss Kennwort bei der nächsten Anmeldung ändern" aktiviert ist.
+6. Klicken Sie auf "OK", um das neue Passwort zu setzen.

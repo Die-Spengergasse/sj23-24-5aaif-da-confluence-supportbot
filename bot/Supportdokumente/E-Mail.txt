@@ -1,0 +1,11 @@
+Betreff: E-Mail Synchronisation auf mobilen Geräten
+Anfrage: Ein Benutzer hat Probleme mit der E-Mail-Synchronisation auf seinem mobilen Gerät. Was könnte die Ursache sein und wie kann man das Problem beheben?
+
+Lösung:
+1. Überprüfen Sie die Internetverbindung des mobilen Geräts.
+2. Stellen Sie sicher, dass die E-Mail-Kontoeinstellungen korrekt sind (Serveradresse, Benutzername, Passwort).
+3. Überprüfen Sie, ob die E-Mail-Synchronisation in den Kontoeinstellungen des Geräts aktiviert ist.
+4. Überprüfen Sie die Einstellungen für den Datenverbrauch, die möglicherweise die Synchronisation einschränken.
+5. Stellen Sie sicher, dass keine Synchronisierungsfehler in der E-Mail-App vorliegen und löschen Sie ggf. den Cache und die Daten der App.
+6. Aktualisieren Sie die E-Mail-App und das Betriebssystem des mobilen Geräts auf die neueste Version.
+7. Entfernen Sie das E-Mail-Konto vom Gerät und fügen Sie es erneut hinzu.

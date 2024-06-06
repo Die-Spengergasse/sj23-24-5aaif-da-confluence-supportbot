@@ -1,0 +1,11 @@
+Betreff: Fehlerquellen beim Drucken
+Anfrage: Ein Benutzer kann nicht drucken. Was können die möglichen Fehlerquellen sein?
+
+Lösung:
+1. Überprüfen Sie, ob der Drucker eingeschaltet und mit dem Netzwerk verbunden ist.
+2. Stellen Sie sicher, dass der Drucker keine Fehlermeldungen anzeigt (z. B. Papierstau, wenig Toner).
+3. Überprüfen Sie die Druckerwarteschlange auf dem Benutzer-PC und löschen Sie hängende Druckaufträge.
+4. Stellen Sie sicher, dass der richtige Druckertreiber installiert ist.
+5. Überprüfen Sie die Druckereinstellungen und stellen Sie sicher, dass der richtige Drucker als Standarddrucker ausgewählt ist.
+6. Testen Sie das Drucken von einem anderen Gerät aus, um Netzwerkprobleme auszuschließen.
+7. Stellen Sie sicher, dass der Druckerfreigabedienst auf dem Server und dem Benutzer-PC aktiviert ist.
