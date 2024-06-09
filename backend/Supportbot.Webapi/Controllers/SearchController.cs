@@ -38,8 +38,12 @@ namespace Supportbot.Webapi.Controllers
         public async Task<ActionResult<List<SearchResultDto>>> Search([FromQuery] string query)
         {
             var searchRequest = new SearchRequestDescriptor<SupportDocument>()
-                .Query(q => q.Match(
-                    new MatchQuery(new Field("content")) { Query = query }));
+                .Query(q => q
+                    .MatchPhrasePrefix(m => m
+                        .Field(f => f.Content)
+                        .Query(query)
+                        .MaxExpansions(10)
+                    ));
             var found = await _client.SearchAsync(searchRequest);
 
             if (!found.IsValidResponse) return BadRequest();
@@ -47,3 +51,6 @@ namespace Supportbot.Webapi.Controllers
         }
     }
 }
+
+// .Query(q => q.Match(
+//                     new MatchQuery(new Field("content")) { Query = query }));
