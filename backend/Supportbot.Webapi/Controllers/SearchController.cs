@@ -41,19 +41,34 @@ namespace Supportbot.Webapi.Controllers
                 // .Query(q => q.Match(
                 //  new MatchQuery(new Field("content")) { Query = query }));
                 
-                /* .Query(q => q
-                    .MatchPhrasePrefix(m => m
-                        .Field(f => f.Content)
-                        .Query(query)
-                        .MaxExpansions(10)
-                    )); */
+                //  .Query(q => q
+                //     .MatchPhrasePrefix(m => m
+                //         .Field(f => f.Content)
+                //         .Query(query)
+                //         .MaxExpansions(10)
+                //     ));
 
-                .Query(q => q
+                /* .Query(q => q
                     .Fuzzy(f => f
                         .Field(fd => fd.Content)
                         .Value(query)
                         .Fuzziness(new Fuzziness("Auto"))
-                    ));
+                    )); */
+
+                    .Query(q => q.Bool(b => b
+                    .Should(
+                        sh => sh.Match(m => m
+                            .Field(f => f.Content)
+                            .Query(query)
+                            .Fuzziness(new Fuzziness("AUTO"))  // Fuzzy search with auto fuzziness
+                        ),
+                        sh => sh.MatchPhrasePrefix(mpp => mpp
+                            .Field(f => f.Content)
+                            .Query(query)
+                            .MaxExpansions(10)
+                        )
+                    )
+                ));
             var found = await _client.SearchAsync(searchRequest);
 
             if (!found.IsValidResponse) return BadRequest();
