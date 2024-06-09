@@ -52,7 +52,7 @@ namespace Supportbot.Webapi.Controllers
                     .Fuzzy(f => f
                         .Field(fd => fd.Content)
                         .Value(query)
-                        .Fuzziness(Fuzziness.Auto)
+                        .Fuzziness(new Fuzziness("Auto"))
                     ));
             var found = await _client.SearchAsync(searchRequest);
 
