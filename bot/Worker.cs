@@ -1,3 +1,4 @@
+using Bogus;
 using Elastic.Clients.Elasticsearch;
 using Elastic.Clients.Elasticsearch.IndexManagement;
 using Microsoft.Extensions.Hosting;
