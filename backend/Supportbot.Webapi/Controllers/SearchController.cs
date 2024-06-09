@@ -35,11 +35,18 @@ namespace Supportbot.Webapi.Controllers
             return Ok(found.Documents.Select(s => new SearchResultDto(s.Title, s.Content)));
         }
 
+        [HttpGet]
         public async Task<ActionResult<List<SearchResultDto>>> Search([FromQuery] string query)
         {
             var searchRequest = new SearchRequestDescriptor<SupportDocument>()
-                .Query(q => q.Match(
-                    new MatchQuery(new Field("content")) { Query = query }));
+                /* .Query(q => q.Match(
+                    new MatchQuery(new Field("content")) { Query = query })); */
+                .Query(q => q
+                    .Fuzzy(f => f
+                    .Field(fd => fd.Content)
+                    .Value(query)
+                    .Fuzziness("AUTO:3,6")
+                    ));
             var found = await _client.SearchAsync(searchRequest);
 
             if (!found.IsValidResponse) return BadRequest();
