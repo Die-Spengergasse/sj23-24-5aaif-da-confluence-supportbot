@@ -38,11 +38,21 @@ namespace Supportbot.Webapi.Controllers
         public async Task<ActionResult<List<SearchResultDto>>> Search([FromQuery] string query)
         {
             var searchRequest = new SearchRequestDescriptor<SupportDocument>()
-                .Query(q => q
+                // .Query(q => q.Match(
+                //  new MatchQuery(new Field("content")) { Query = query }));
+                
+                /* .Query(q => q
                     .MatchPhrasePrefix(m => m
                         .Field(f => f.Content)
                         .Query(query)
                         .MaxExpansions(10)
+                    )); */
+
+                .Query(q => q
+                    .Fuzzy(f => f
+                        .Field(fd => fd.Content)
+                        .Value(query)
+                        .Fuzziness(Fuzziness.Auto)
                     ));
             var found = await _client.SearchAsync(searchRequest);
 
@@ -52,5 +62,3 @@ namespace Supportbot.Webapi.Controllers
     }
 }
 
-// .Query(q => q.Match(
-//                     new MatchQuery(new Field("content")) { Query = query }));
