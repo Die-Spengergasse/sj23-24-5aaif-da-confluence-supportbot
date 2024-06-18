@@ -32,13 +32,7 @@ namespace Mosviewer.Service
         protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
             TimeSpan delay = TimeSpan.FromSeconds(10);
-            // DateTime nextRun = DateTime.MinValue;
-            // DateTime lastFileDate = DateTime.MinValue;
-            // Randomizer.Seed = new Random(1811);
-            // var supportDocumentFaker = new Faker<SupportDocument>().CustomInstantiator(f => new SupportDocument(
-            //     f.Lorem.Sentence(),
-            //     DateTime.UtcNow,
-            //     f.Lorem.Paragraphs(3)));
+            
 
             await _client.Indices.DeleteAsync(new DeleteIndexRequest(Indices.Index("supportdocument-idx")));
 
@@ -47,19 +41,8 @@ namespace Mosviewer.Service
                 try
                 {
 
-                    // if (nextRun < DateTime.UtcNow)
-                    // {
                     _logger.LogInformation("Checking for new files at {time}", DateTimeOffset.Now);
 
-                    //     var document = supportDocumentFaker.Generate();
-                    //     var response = await _client.IndexAsync(document);
-                    //     if (!response.IsValidResponse)
-                    //     {
-                    //         _logger.LogError("Error indexing document: {error}", response.ElasticsearchServerError);
-                    //     }
-
-                    //     nextRun = new DateTime((lastFileDate.Ticks / TimeSpan.TicksPerHour + 1) * TimeSpan.TicksPerHour, DateTimeKind.Utc);
-                    // }
 
                     if (!Directory.Exists(_directoryPath))
                     {

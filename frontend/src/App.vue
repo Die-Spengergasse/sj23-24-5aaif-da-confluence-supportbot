@@ -32,7 +32,7 @@ const user = useUserStore();
             <a>Team</a>
             <a>Impressum</a>
           </nav>
-        </div> -->
+        </div> (für mehrere Tabs)--> 
       </div>
     </header>
 

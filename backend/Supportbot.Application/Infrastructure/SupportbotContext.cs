@@ -1,9 +1,11 @@
-﻿using Bogus;
+﻿//using Bogus;
 using Microsoft.EntityFrameworkCore;
 using Supportbot.Application.Model;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using BCrypt.Net;
 
 namespace Supportbot.Application.Infrastructure
 {
@@ -52,25 +54,53 @@ namespace Supportbot.Application.Infrastructure
         /// <summary>
         /// Generates random values for testing the application. This method is only called in development mode.
         /// </summary>
-        private async Task SeedAsync()
+private async Task SeedAsync()
+{
+    var employees = new List<Employee>
+    {
+        new Employee
         {
-            Randomizer.Seed = new Random(1213);
-            var faker = new Faker("de");
+            Guid = Guid.NewGuid(),
+            Username = "aksoy",
+            Firstname = "Can",
+            Lastname = "Aksoy",
+            Birth = new DateTime(2002, 1, 25),
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("1234")
+        },
+        new Employee
+        {
+            Guid = Guid.NewGuid(),
+            Username = "flach",
+            Firstname = "Julian",
+            Lastname = "Flach",
+            Birth = new DateTime(2002, 2, 27),
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("1234")
+        },
+        new Employee
+        {
+            Guid = Guid.NewGuid(),
+            Username = "posavec",
+            Firstname = "Luka",
+            Lastname = "Posavec",
+            Birth = new DateTime(1995, 3, 3),
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("1234")
+        },
+        new Employee
+        {
+            Guid = Guid.NewGuid(),
+            Username = "birkel",
+            Firstname = "Noah",
+            Lastname = "Birkel",
+            Birth = new DateTime(1995, 3, 3),
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("1234")
+        },
+        // Weitere Mitarbeiter können hier hinzugefügt werden
+    };
 
-            var employees = new Faker<Employee>("de").CustomInstantiator(f =>
-            {
-                var lastname = f.Name.LastName();
-                return new Employee(
-                    username: lastname.ToLower(),
-                    firstname: f.Name.FirstName(), lastname: lastname,
-                    birth: f.Date.Between(new DateTime(1990, 1, 1), new DateTime(2005, 1, 1)).Date)
-                { Guid = f.Random.Guid() };
-            })
-            .Generate(10)
-            .ToList();
-            Employees.AddRange(employees);
-            await SaveChangesAsync();
-        }
+    Employees.AddRange(employees);
+    await SaveChangesAsync();
+}
+
 
         /// <summary>
         /// Creates the database. Called once at application startup.

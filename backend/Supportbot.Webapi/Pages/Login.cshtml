@@ -16,6 +16,17 @@
         *::after {
             box-sizing: border-box;
         }
+        .header{
+            background-color: white;
+            width: 100%;
+            height: 100%;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-radius: 20px;
+        }
 
         html,
         body {
@@ -24,43 +35,67 @@
             height: 100%;
             padding: 0;
             margin: 0;
-        }
-
-        h1 {
-            margin-top: 0;
+            background-image: url('https://bamba.at/newpatter.png');
+            background-size: repeat;
         }
 
         .formcontainer {
             height: 100%;
-            padding: 0;
-            margin: 0;
+            display: flex;
+            align-items: center; 
+            justify-content: center; 
+        }
+
+        .formcontent {
+            border: 3px solid #007bff; 
+            padding: 1em;
+            border-radius: 20px; 
+            background-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 0, 255, 0.3);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        .formcontent {
-            border: 3px solid gray;
-            padding: 1em;
-            border-radius: 5px;
-        }
-
         .formrow {
             display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+            justify-content: center;
         }
 
         .formlabel {
             width: 5em;
         }
 
-        ul {
-            margin: 0;
+        .formcontrol input {
+            padding: 0.5em;
+            width: 200px;
+        }
+
+        button {
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+        }
+
+        .form {
+            color: white;
+            font-weight: 500;
+        }
+
+        h1 {
+            
         }
     </style>
 </head>
 
 <body>
+
     <div class="formcontainer">
         <div class="formcontent">
             <div class="header">
@@ -80,7 +115,7 @@
                         <p>Users: @string.Join(", ", Model.Users)</p>
                     </div>
                     <div class="formrow">
-                        <div asp-validation-summary=All></div>
+                        <div asp-validation-summary="All"></div>
                     </div>
                     <div class="formrow">
                         <button type="submit">Login</button>
@@ -89,6 +124,7 @@
             </form>
         </div>
     </div>
+
 </body>
 
 </html>

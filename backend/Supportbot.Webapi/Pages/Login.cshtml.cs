@@ -43,9 +43,9 @@ namespace Supportbot.Webapi.Pages
         {
             if (!ModelState.IsValid) return Page();
             var user = await _db.Employees.FirstOrDefaultAsync(e => e.Username == Username);
-            if (user is null)
+            if (user is null || !BCrypt.Net.BCrypt.Verify(Password, user.PasswordHash))
             {
-                ModelState.AddModelError("", "Invalid username.");
+                ModelState.AddModelError("", "Invalid username or password.");
                 return Page();
             }
             var claims = new List<Claim>
